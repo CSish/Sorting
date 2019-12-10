@@ -7,8 +7,14 @@ def merge( arrA, arrB ):
     a_head = 0
     b_head = 0
 
-    for i in merged_arr: 
-        if arrA[a_head] <= arrB[b_head]:
+    for i in range(0, len(merged_arr)):
+        if a_head >= len(arrA):
+            merged_arr[i] = arrB[b_head]
+            b_head += 1
+        elif b_head >= len(arrB):
+            merged_arr[i] = arrA[a_head]
+            a_head += 1
+        elif arrA[a_head] <= arrB[b_head]:
             merged_arr[i] = arrA[a_head]
             a_head += 1
         else:
@@ -21,7 +27,7 @@ def merge( arrA, arrB ):
 # TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort( arr ):
     # TO-DO
-    if len(arr) == 1:
+    if len(arr) < 2:
         return arr
 
     mid = int(len(arr)/2)
